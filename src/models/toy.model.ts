@@ -1,5 +1,5 @@
 export interface ReviewModel {
-    id: number
+    reviewId: number
     author: string
     comment: string
     rating: number
@@ -7,17 +7,19 @@ export interface ReviewModel {
 }
 
 export interface AgeGroupModel {
-    id: number
+    ageGroupId: number
     name: string
+    description: string
 }
 
 export interface ToyTypeModel {
-    id: number
+    typeId: number
     name: string
+    description: string
 }
 
 export interface ToyModel {
-    id: number
+    toyId: number
     permalink: string
     name: string
     description: string

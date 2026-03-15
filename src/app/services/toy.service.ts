@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ToyModel, AgeGroupModel, ToyTypeModel} from "../../models/toy.model";
+import { ToyModel, AgeGroupModel, ToyTypeModel } from "../../models/toy.model";
 
 const client = axios.create({
     baseURL: 'https://toy.pequla.com/api',

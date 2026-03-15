@@ -1,63 +1,11 @@
 import {
-  ApplicationRef,
   ChangeDetectionStrategy,
   Component,
-  EnvironmentInjector,
-  Injectable,
-  Injector,
   SecurityContext,
   ViewEncapsulation,
-  createComponent,
-  inject,
   setClassMetadata,
-  ɵɵdefineComponent,
-  ɵɵdefineInjectable
+  ɵɵdefineComponent
 } from "./chunk-U6RI3SJ2.js";
-
-// node_modules/@angular/cdk/fesm2022/_style-loader-chunk.mjs
-var appsWithLoaders = /* @__PURE__ */ new WeakMap();
-var _CdkPrivateStyleLoader = class __CdkPrivateStyleLoader {
-  _appRef;
-  _injector = inject(Injector);
-  _environmentInjector = inject(EnvironmentInjector);
-  load(loader) {
-    const appRef = this._appRef = this._appRef || this._injector.get(ApplicationRef);
-    let data = appsWithLoaders.get(appRef);
-    if (!data) {
-      data = {
-        loaders: /* @__PURE__ */ new Set(),
-        refs: []
-      };
-      appsWithLoaders.set(appRef, data);
-      appRef.onDestroy(() => {
-        appsWithLoaders.get(appRef)?.refs.forEach((ref) => ref.destroy());
-        appsWithLoaders.delete(appRef);
-      });
-    }
-    if (!data.loaders.has(loader)) {
-      data.loaders.add(loader);
-      data.refs.push(createComponent(loader, {
-        environmentInjector: this._environmentInjector
-      }));
-    }
-  }
-  static ɵfac = function _CdkPrivateStyleLoader_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || __CdkPrivateStyleLoader)();
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: __CdkPrivateStyleLoader,
-    factory: __CdkPrivateStyleLoader.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(_CdkPrivateStyleLoader, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], null, null);
-})();
 
 // node_modules/@angular/cdk/fesm2022/private.mjs
 var _VisuallyHiddenLoader = class __VisuallyHiddenLoader {
@@ -116,9 +64,8 @@ function _setInnerHtml(element, html, sanitizer) {
 }
 
 export {
-  _CdkPrivateStyleLoader,
   _VisuallyHiddenLoader,
   trustedHTMLFromString,
   _setInnerHtml
 };
-//# sourceMappingURL=chunk-B6TRMCFT.js.map
+//# sourceMappingURL=chunk-P72TPPJK.js.map

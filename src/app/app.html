@@ -1,37 +1,45 @@
 <mat-toolbar color="primary">
-  <span>
-    <strong>Prodavnica Igračaka</strong>
-  </span>
-  <span class="spacer"></span>
-  <a routerLink="/" matButton>
-    <mat-icon fontIcon="home" /> Početna
+  <a routerLink="/" class="brand">
+    Prodavnica Igračaka
   </a>
-  <a routerLink="/about" matButton>
-    <mat-icon fontIcon="info" /> O nama
-  </a>
-  @if(authService.getActiveUser()) {
-  <a routerLink="/cart" matButton>
-    <mat-icon fontIcon="shopping_cart"
-      [matBadge]="getCartCount()"
-      [matBadgeHidden]="getCartCount() === 0"
-      matBadgeColor="warn" />
-    Korpa
-  </a>
-  <a routerLink="/user" matButton>
-    <mat-icon fontIcon="person" /> Profil
-  </a>
-  <button matButton (click)="doLogout()">
-    <mat-icon fontIcon="logout" /> Odjavi se
-  </button>
-  } @else {
-  <a routerLink="/login" matButton>
-    <mat-icon fontIcon="login" /> Prijava
-  </a>
-  <a routerLink="/register" matButton>
-    <mat-icon fontIcon="person_add" /> Registracija
-  </a>
-  }
+
+  <nav class="nav-center">
+    <a routerLink="/" matButton>
+      <mat-icon fontIcon="home" /> Početna
+    </a>
+    <a routerLink="/about" matButton>
+      <mat-icon fontIcon="info" /> O nama
+    </a>
+    @if(authService.getActiveUser()) {
+    <a routerLink="/cart" matButton>
+      <mat-icon fontIcon="shopping_cart"
+        [matBadge]="getCartCount()"
+        [matBadgeHidden]="getCartCount() === 0"
+        matBadgeColor="warn" />
+      Korpa
+    </a>
+    }
+  </nav>
+
+  <div class="nav-right">
+    @if(authService.getActiveUser()) {
+    <a routerLink="/user" matButton>
+      <mat-icon fontIcon="person" /> Profil
+    </a>
+    <button matButton (click)="doLogout()">
+      <mat-icon fontIcon="logout" /> Odjavi se
+    </button>
+    } @else {
+    <a routerLink="/login" matButton>
+      <mat-icon fontIcon="login" /> Prijava
+    </a>
+    <a routerLink="/register" matButton>
+      <mat-icon fontIcon="person_add" /> Registracija
+    </a>
+    }
+  </div>
 </mat-toolbar>
+
 <div class="wrapper">
   <router-outlet />
 </div>

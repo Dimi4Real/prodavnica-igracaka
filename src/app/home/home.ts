@@ -27,12 +27,15 @@ export class Home {
   public authService = AuthService
   toys = signal<ToyModel[]>([])
 
-  constructor() {
+ constructor() {
     ToyService.getToys()
-      .then(rsp => this.toys.set(rsp.data))
-      .catch(() => Alerts.error('Greška pri učitavanju igračaka!'))
-  }
-
+      .then(rsp => {
+        console.log('Cela lista:', rsp.data)
+        console.log('Prvi element:', rsp.data[0])
+        console.log('Kljucevi prvog elementa:', Object.keys(rsp.data[0]))
+        this.toys.set(rsp.data)
+      })
+}
   getImageUrl(toy: ToyModel) {
     return 'https://toy.pequla.com' + toy.imageUrl
   }
@@ -48,4 +51,5 @@ export class Home {
     const avg = toy.reviews.reduce((sum, r) => sum + r.rating, 0) / toy.reviews.length
     return '⭐ ' + avg.toFixed(1)
   }
+  
 }

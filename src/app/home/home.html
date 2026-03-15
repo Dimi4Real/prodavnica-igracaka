@@ -1,22 +1,26 @@
 @if(toys().length > 0) {
+<div class="page-header">
+    <h1>🧸 Naše Igračke</h1>
+    <p>Pronađite savršenu igračku za svoje dete</p>
+</div>
 <div class="card-wrapper">
-    @for (toy of toys(); track toy.id) {
+    @for (toy of toys(); track toy.toyId) {
     <mat-card class="toy-card" appearance="outlined">
         <img mat-card-image [src]="getImageUrl(toy)" [alt]="toy.name">
         <mat-card-content class="card-content">
-            <mat-card-title>
-                <strong>{{toy.name}}</strong>
-            </mat-card-title>
+            <mat-card-title>{{toy.name}}</mat-card-title>
             <mat-card-subtitle>{{toy.type.name}} · {{toy.ageGroup.name}}</mat-card-subtitle>
             <p class="toy-desc">{{toy.description}}</p>
-            <mat-chip-set>
-                <mat-chip>{{toy.targetGroup}}</mat-chip>
-                <mat-chip>{{toy.price}} RSD</mat-chip>
-                <mat-chip>{{getAverageRating(toy)}}</mat-chip>
-            </mat-chip-set>
+            <p class="price-tag">{{toy.price}} RSD</p>
+            <div class="card-chips">
+                <mat-chip-set>
+                    <mat-chip>{{toy.targetGroup}}</mat-chip>
+                    <mat-chip>{{getAverageRating(toy)}}</mat-chip>
+                </mat-chip-set>
+            </div>
         </mat-card-content>
         <mat-card-actions>
-            <a [routerLink]="'/details/' + toy.id" matButton>
+            <a [routerLink]="'/details/' + toy.toyId" matButton>
                 <mat-icon fontIcon="description" /> Detalji
             </a>
             @if(authService.getActiveUser()) {

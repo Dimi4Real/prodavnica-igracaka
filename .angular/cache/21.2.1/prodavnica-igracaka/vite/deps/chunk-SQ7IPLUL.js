@@ -1,23 +1,23 @@
 import {
   isFakeMousedownFromScreenReader,
   isFakeTouchstartFromScreenReader
-} from "./chunk-XFI3LEDN.js";
+} from "./chunk-WKAGHW6T.js";
+import {
+  _animationsDisabled
+} from "./chunk-65TWZIC7.js";
 import {
   _getEventTarget,
   normalizePassiveListenerOptions
-} from "./chunk-XA6252L2.js";
+} from "./chunk-DPAJNIXH.js";
+import {
+  _CdkPrivateStyleLoader
+} from "./chunk-VAJCUT5P.js";
 import {
   coerceElement
 } from "./chunk-B254YBBR.js";
 import {
-  _CdkPrivateStyleLoader
-} from "./chunk-B6TRMCFT.js";
-import {
-  _animationsDisabled
-} from "./chunk-63EFFDKT.js";
-import {
   Platform
-} from "./chunk-SK5HU43P.js";
+} from "./chunk-FP53DBGY.js";
 import {
   BidiModule
 } from "./chunk-VYCT5S2C.js";
@@ -43,19 +43,6 @@ import {
 import {
   __spreadValues
 } from "./chunk-D7MF2QZF.js";
-
-// node_modules/@angular/cdk/fesm2022/_css-pixel-value-chunk.mjs
-function coerceCssPixelValue(value) {
-  if (value == null) {
-    return "";
-  }
-  return typeof value === "string" ? value : `${value}px`;
-}
-
-// node_modules/@angular/cdk/fesm2022/coercion.mjs
-function coerceBooleanProperty(value) {
-  return value != null && `${value}` !== "false";
-}
 
 // node_modules/@angular/material/fesm2022/_ripple-chunk.mjs
 var RippleState;
@@ -599,8 +586,6 @@ var MatRippleModule = class _MatRippleModule {
 })();
 
 export {
-  coerceCssPixelValue,
-  coerceBooleanProperty,
   defaultRippleAnimationConfig,
   RippleRenderer,
   MAT_RIPPLE_GLOBAL_OPTIONS,
@@ -608,4 +593,4 @@ export {
   _StructuralStylesLoader,
   MatRippleModule
 };
-//# sourceMappingURL=chunk-OJFTAR2H.js.map
+//# sourceMappingURL=chunk-SQ7IPLUL.js.map

@@ -1,0 +1,43 @@
+.details-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.details-card {
+    width: 360px;
+}
+
+.details-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 480px;
+}
+
+.desc-card, .reviews-card {
+    width: 100%;
+}
+
+.review-item {
+    margin-bottom: 12px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.review-stars {
+    font-size: 16px;
+}
+
+.review-comment {
+    font-size: 14px;
+    color: gray;
+    margin: 4px 0 8px 0;
+}

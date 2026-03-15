@@ -1,6 +1,9 @@
 import {
+  coerceArray
+} from "./chunk-N4DOILP3.js";
+import {
   Platform
-} from "./chunk-SK5HU43P.js";
+} from "./chunk-FP53DBGY.js";
 import {
   ANIMATION_MODULE_TYPE,
   CSP_NONCE,
@@ -24,11 +27,6 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule
 } from "./chunk-U6RI3SJ2.js";
-
-// node_modules/@angular/cdk/fesm2022/_array-chunk.mjs
-function coerceArray(value) {
-  return Array.isArray(value) ? value : [value];
-}
 
 // node_modules/@angular/cdk/fesm2022/_breakpoints-observer-chunk.mjs
 var mediaQueriesForWebkitCompatibility = /* @__PURE__ */ new Set();
@@ -212,9 +210,8 @@ function _animationsDisabled() {
 }
 
 export {
-  coerceArray,
   BreakpointObserver,
   _getAnimationsState,
   _animationsDisabled
 };
-//# sourceMappingURL=chunk-63EFFDKT.js.map
+//# sourceMappingURL=chunk-65TWZIC7.js.map

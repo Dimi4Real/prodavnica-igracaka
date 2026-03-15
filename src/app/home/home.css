@@ -1,12 +1,35 @@
-.toy-card {
-    width: 280px;
+.page-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: gray;
+    font-size: 15px;
 }
 
 .card-wrapper {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 16px;
+}
+
+.toy-card {
+    width: 260px;
+    border-radius: 16px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.toy-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
 }
 
 .card-content {
@@ -16,9 +39,48 @@
 .toy-desc {
     font-size: 13px;
     color: gray;
-    margin-bottom: 8px;
+    margin: 8px 0;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    min-height: 60px;
+}
+
+.price-tag {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--mat-sys-primary);
+    margin: 8px 0;
+}
+
+.card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.toy-card {
+    width: 260px;
+    border-radius: 16px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.toy-card mat-card-content {
+    flex: 1 !important;
+}
+
+.toy-card mat-card-actions {
+    margin-top: auto !important;
+}
+
+mat-card-title {
+    min-height: 48px;
+}
+
+mat-card-subtitle {
+    min-height: 24px;
 }
