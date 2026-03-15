@@ -1,0 +1,13 @@
+.loading-card {
+    max-width: 420px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+
+mat-spinner {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+}

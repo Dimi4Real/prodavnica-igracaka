@@ -1,0 +1,24 @@
+.toy-card {
+    width: 280px;
+}
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card-content {
+    margin-top: 10px;
+}
+
+.toy-desc {
+    font-size: 13px;
+    color: gray;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
