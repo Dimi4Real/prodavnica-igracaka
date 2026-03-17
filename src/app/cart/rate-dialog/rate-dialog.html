@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Oceni igračku</h2>
+
+<mat-dialog-content>
+    <p class="toy-name">{{reservation.toyName}}</p>
+
+    <p class="rating-label">Ocena:</p>
+    <div class="stars-wrapper">
+        @for(star of getStars(); track star) {
+        <button matIconButton (click)="setRating(star)">
+            <mat-icon [class.star-filled]="rating >= star">
+                {{rating >= star ? 'star' : 'star_border'}}
+            </mat-icon>
+        </button>
+        }
+    </div>
+
+    <mat-form-field class="full-width">
+        <mat-label>Komentar (opciono)</mat-label>
+        <textarea matInput [(ngModel)]="comment" rows="3"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button matButton (click)="doCancel()">
+        <mat-icon fontIcon="close" /> Odustani
+    </button>
+    <button matButton (click)="doSave()" [disabled]="rating === 0">
+        <mat-icon fontIcon="save" /> Sačuvaj ocenu
+    </button>
+</mat-dialog-actions>

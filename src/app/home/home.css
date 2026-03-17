@@ -1,35 +1,81 @@
-.page-header {
-    text-align: center;
-    margin-bottom: 32px;
+.home-wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
 }
 
-.page-header h1 {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 8px;
+.filter-card {
+    width: 280px;
+    flex-shrink: 0;
 }
 
-.page-header p {
+.filter-label {
+    font-size: 13px;
     color: gray;
-    font-size: 15px;
+    margin: 8px 0 4px 0;
+}
+
+mat-divider {
+    margin: 12px 0;
+}
+
+.results-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+.results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.results-header h2 {
+    margin: 0;
+}
+
+.results-count {
+    color: gray;
+    font-size: 14px;
+    margin: 0;
 }
 
 .card-wrapper {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
 }
 
 .toy-card {
-    width: 260px;
+    width: 240px;
     border-radius: 16px !important;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .toy-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+}
+
+.toy-card mat-card-content {
+    flex: 1 !important;
+}
+
+.toy-card mat-card-actions {
+    margin-top: auto !important;
+}
+
+mat-card-title {
+    min-height: 48px;
+}
+
+mat-card-subtitle {
+    min-height: 24px;
 }
 
 .card-content {
@@ -41,7 +87,7 @@
     color: gray;
     margin: 8px 0;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     min-height: 60px;
@@ -61,26 +107,15 @@
     margin-top: 4px;
 }
 
-.toy-card {
-    width: 260px;
-    border-radius: 16px !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex !important;
-    flex-direction: column !important;
+.no-results-card {
+    text-align: center;
+    padding: 40px;
 }
 
-.toy-card mat-card-content {
-    flex: 1 !important;
-}
-
-.toy-card mat-card-actions {
-    margin-top: auto !important;
-}
-
-mat-card-title {
-    min-height: 48px;
-}
-
-mat-card-subtitle {
-    min-height: 24px;
+.no-results-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: gray;
+    margin-bottom: 16px;
 }

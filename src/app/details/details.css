@@ -17,8 +17,35 @@
     width: 480px;
 }
 
-.desc-card, .reviews-card {
+.desc-card, .reviews-card, .user-review-card {
     width: 100%;
+}
+
+.user-review-card {
+    border: 2px solid var(--mat-sys-primary) !important;
+}
+
+.user-review-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.user-stars {
+    font-size: 24px;
+}
+
+.user-comment {
+    font-size: 14px;
+    color: gray;
+    font-style: italic;
+    margin: 0;
+}
+
+.no-rating {
+    color: gray;
+    font-size: 14px;
+    font-style: italic;
 }
 
 .review-item {

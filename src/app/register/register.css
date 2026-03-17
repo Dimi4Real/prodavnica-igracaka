@@ -1,3 +1,27 @@
 mat-card-content {
     margin-top: 16px;
 }
+
+mat-divider {
+    margin: 16px 0 8px 0;
+}
+
+.section-label {
+    font-size: 13px;
+    color: gray;
+    margin-bottom: 8px;
+}
+
+.chips-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+    min-height: 32px;
+}
+
+.no-types {
+    color: gray;
+    font-size: 14px;
+    font-style: italic;
+}

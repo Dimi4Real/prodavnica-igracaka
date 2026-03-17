@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,10 +6,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 import { AuthService } from '../services/auth.service';
+import { ToyService } from '../services/toy.service';
 import { Alerts } from '../alerts';
 import { UserModel } from '../../models/user.model';
-import { MatDividerModule } from '@angular/material/divider';
+import { ToyTypeModel } from '../../models/toy.model';
 
 @Component({
   selector: 'app-user',
@@ -19,24 +22,31 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatIconModule,
     MatChipsModule,
+    MatSelectModule,
+    MatDividerModule,
     FormsModule,
-    RouterLink,
-    MatDividerModule
+    RouterLink
   ],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
 export class User {
   activeUser: UserModel | null = AuthService.getActiveUser()
+  toyTypes = signal<ToyTypeModel[]>([])
+  selectedType: string = ''
   oldPassword = ''
   newPassword = ''
   passRepeat = ''
-  newFavoriteType = ''
 
   constructor(private router: Router) {
     if (!AuthService.getActiveUser()) {
       router.navigate(['/login'])
+      return
     }
+
+    ToyService.getToyTypes()
+      .then(rsp => this.toyTypes.set(rsp.data))
+      .catch(() => Alerts.error('Greška pri učitavanju tipova igračaka!'))
   }
 
   getAvatarUrl() {
@@ -80,11 +90,13 @@ export class User {
   }
 
   addFavoriteType() {
-    if (!this.newFavoriteType.trim()) return
-    if (!this.activeUser!.favoriteToyTypes.includes(this.newFavoriteType.trim())) {
-      this.activeUser!.favoriteToyTypes.push(this.newFavoriteType.trim())
+    if (!this.selectedType) return
+    if (!this.activeUser!.favoriteToyTypes.includes(this.selectedType)) {
+      this.activeUser!.favoriteToyTypes.push(this.selectedType)
+    } else {
+      Alerts.error('Ovaj tip igračke je već dodat!')
     }
-    this.newFavoriteType = ''
+    this.selectedType = ''
   }
 
   removeFavoriteType(type: string) {

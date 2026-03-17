@@ -31,6 +31,36 @@
             <mat-label>Adresa</mat-label>
             <input matInput type="text" [(ngModel)]="user.address">
         </mat-form-field>
+
+        <mat-divider />
+        <p class="section-label">Omiljene vrste igračaka (obavezno bar jedna)</p>
+
+        <div class="chips-wrapper">
+            @for(type of user.favoriteToyTypes; track type) {
+            <mat-chip (removed)="removeFavoriteType(type)">
+                {{type}}
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip>
+            }
+            @if(user.favoriteToyTypes.length === 0) {
+            <p class="no-types">Niste dodali nijedan tip igračke</p>
+            }
+        </div>
+
+        <mat-form-field class="full-width">
+            <mat-label>Izaberite tip igračke</mat-label>
+            <mat-select [(ngModel)]="selectedType">
+                @for(type of toyTypes(); track type.typeId) {
+                <mat-option [value]="type.name">{{type.name}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <button matButton (click)="addFavoriteType()">
+            <mat-icon fontIcon="add" /> Dodaj tip
+        </button>
+
     </mat-card-content>
     <mat-card-actions>
         <button matButton (click)="doRegister()">

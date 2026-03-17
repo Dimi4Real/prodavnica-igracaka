@@ -1,10 +1,4 @@
 import {
-  _getEventTarget,
-  _getFocusedElementPierceShadowDom,
-  _getShadowRoot,
-  normalizePassiveListenerOptions
-} from "./chunk-XA6252L2.js";
-import {
   _VisuallyHiddenLoader,
   _setInnerHtml
 } from "./chunk-ASFVYM27.js";
@@ -13,17 +7,23 @@ import {
 } from "./chunk-HXUDSGSB.js";
 import {
   BreakpointObserver
-} from "./chunk-KG57VCY3.js";
+} from "./chunk-PHPJE3FH.js";
+import {
+  _getEventTarget,
+  _getFocusedElementPierceShadowDom,
+  _getShadowRoot,
+  normalizePassiveListenerOptions
+} from "./chunk-XA6252L2.js";
 import {
   _CdkPrivateStyleLoader
 } from "./chunk-QG3B7VTG.js";
 import {
-  Platform
-} from "./chunk-UZXNZDDP.js";
-import {
   coerceElement,
   coerceNumberProperty
 } from "./chunk-JXO7E4KC.js";
+import {
+  Platform
+} from "./chunk-UZXNZDDP.js";
 import {
   APP_ID,
   BehaviorSubject,
@@ -1794,6 +1794,19 @@ var ListKeyManager = class {
   }
 };
 
+// node_modules/@angular/cdk/fesm2022/_activedescendant-key-manager-chunk.mjs
+var ActiveDescendantKeyManager = class extends ListKeyManager {
+  setActiveItem(index) {
+    if (this.activeItem) {
+      this.activeItem.setInactiveStyles();
+    }
+    super.setActiveItem(index);
+    if (this.activeItem) {
+      this.activeItem.setActiveStyles();
+    }
+  }
+};
+
 // node_modules/@angular/cdk/fesm2022/_focus-key-manager-chunk.mjs
 var FocusKeyManager = class extends ListKeyManager {
   _origin = "program";
@@ -2423,10 +2436,14 @@ export {
   ObserversModule,
   InteractivityChecker,
   FocusTrapFactory,
+  LiveAnnouncer,
   A11yModule,
   _IdGenerator,
   hasModifierKey,
+  ActiveDescendantKeyManager,
   FocusKeyManager,
+  addAriaReferencedId,
+  removeAriaReferencedId,
   AriaDescriber
 };
-//# sourceMappingURL=chunk-D2QXX7H5.js.map
+//# sourceMappingURL=chunk-UQEZGDW5.js.map

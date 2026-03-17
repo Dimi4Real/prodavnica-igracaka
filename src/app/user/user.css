@@ -57,3 +57,9 @@ mat-divider {
 mat-card-content {
     margin-top: 16px;
 }
+
+.no-types {
+    color: gray;
+    font-size: 14px;
+    font-style: italic;
+}

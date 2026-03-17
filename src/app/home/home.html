@@ -1,36 +1,150 @@
-@if(toys().length > 0) {
-<div class="page-header">
-    <h1>🧸 Naše Igračke</h1>
-    <p>Pronađite savršenu igračku za svoje dete</p>
-</div>
-<div class="card-wrapper">
-    @for (toy of toys(); track toy.toyId) {
-    <mat-card class="toy-card" appearance="outlined">
-        <img mat-card-image [src]="getImageUrl(toy)" [alt]="toy.name">
-        <mat-card-content class="card-content">
-            <mat-card-title>{{toy.name}}</mat-card-title>
-            <mat-card-subtitle>{{toy.type.name}} · {{toy.ageGroup.name}}</mat-card-subtitle>
-            <p class="toy-desc">{{toy.description}}</p>
-            <p class="price-tag">{{toy.price}} RSD</p>
-            <div class="card-chips">
-                <mat-chip-set>
-                    <mat-chip>{{toy.targetGroup}}</mat-chip>
-                    <mat-chip>{{getAverageRating(toy)}}</mat-chip>
-                </mat-chip-set>
-            </div>
+@if(allToys().length > 0) {
+<div class="home-wrapper">
+
+    <mat-card class="filter-card">
+        <mat-card-header>
+            <h2>🔍 Pretraga</h2>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field class="full-width">
+                <mat-label>Naziv igračke</mat-label>
+                <input matInput type="text" [(ngModel)]="filterName">
+                <mat-icon matSuffix>sell</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Opis</mat-label>
+                <input matInput type="text" [(ngModel)]="filterDescription">
+                <mat-icon matSuffix>description</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Tip igračke</mat-label>
+                <mat-select [(ngModel)]="filterType">
+                    <mat-option value="">Svi tipovi</mat-option>
+                    @for(type of toyTypes(); track type.typeId) {
+                    <mat-option [value]="type.name">{{type.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Uzrast</mat-label>
+                <mat-select [(ngModel)]="filterAgeGroup">
+                    <mat-option value="">Svi uzrasti</mat-option>
+                    @for(ag of ageGroups(); track ag.ageGroupId) {
+                    <mat-option [value]="ag.name">{{ag.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Ciljna grupa</mat-label>
+                <mat-select [(ngModel)]="filterTargetGroup">
+                    <mat-option value="">Sve grupe</mat-option>
+                    <mat-option value="svi">Svi</mat-option>
+                    <mat-option value="dečak">Dečak</mat-option>
+                    <mat-option value="devojčica">Devojčica</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-divider />
+            <p class="filter-label">Datum proizvodnje</p>
+
+            <mat-form-field class="full-width">
+                <mat-label>Od datuma</mat-label>
+                <input matInput type="date" [(ngModel)]="filterDateFrom">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Do datuma</mat-label>
+                <input matInput type="date" [(ngModel)]="filterDateTo">
+            </mat-form-field>
+
+            <mat-divider />
+            <p class="filter-label">Cena (RSD)</p>
+
+            <mat-form-field class="full-width">
+                <mat-label>Cena od</mat-label>
+                <input matInput type="number" [(ngModel)]="filterPriceMin">
+                <mat-icon matSuffix>payments</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Cena do</mat-label>
+                <input matInput type="number" [(ngModel)]="filterPriceMax">
+                <mat-icon matSuffix>payments</mat-icon>
+            </mat-form-field>
+
+            <mat-divider />
+
+            <mat-form-field class="full-width">
+                <mat-label>Minimalna ocena</mat-label>
+                <mat-select [(ngModel)]="filterMinRating">
+                    <mat-option [value]="null">Sve ocene</mat-option>
+                    <mat-option [value]="1">⭐ 1+</mat-option>
+                    <mat-option [value]="2">⭐ 2+</mat-option>
+                    <mat-option [value]="3">⭐ 3+</mat-option>
+                    <mat-option [value]="4">⭐ 4+</mat-option>
+                    <mat-option [value]="5">⭐ 5</mat-option>
+                </mat-select>
+            </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-            <a [routerLink]="'/details/' + toy.toyId" matButton>
-                <mat-icon fontIcon="description" /> Detalji
-            </a>
-            @if(authService.getActiveUser()) {
-            <button matButton (click)="doReserve(toy)">
-                <mat-icon fontIcon="add_shopping_cart" /> Rezerviši
+            <button matButton (click)="doSearch()">
+                <mat-icon fontIcon="search" /> Pretraži
             </button>
-            }
+            <button matButton (click)="doReset()">
+                <mat-icon fontIcon="refresh" /> Resetuj
+            </button>
         </mat-card-actions>
     </mat-card>
-    }
+
+    <div class="results-wrapper">
+        <div class="results-header">
+            <h2>🧸 Igračke</h2>
+            <p class="results-count">Pronađeno: <strong>{{filteredToys().length}}</strong> igračaka</p>
+        </div>
+        @if(filteredToys().length > 0) {
+        <div class="card-wrapper">
+            @for (toy of filteredToys(); track toy.toyId) {
+            <mat-card class="toy-card" appearance="outlined">
+                <img mat-card-image [src]="getImageUrl(toy)" [alt]="toy.name">
+                <mat-card-content class="card-content">
+                    <mat-card-title>{{toy.name}}</mat-card-title>
+                    <mat-card-subtitle>{{toy.type.name}} · {{toy.ageGroup.name}}</mat-card-subtitle>
+                    <p class="toy-desc">{{toy.description}}</p>
+                    <p class="price-tag">{{toy.price}} RSD</p>
+                    <div class="card-chips">
+                        <mat-chip-set>
+                            <mat-chip>{{toy.targetGroup}}</mat-chip>
+                            <mat-chip>{{getAverageRating(toy)}}</mat-chip>
+                        </mat-chip-set>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <a [routerLink]="'/details/' + toy.toyId" matButton>
+                        <mat-icon fontIcon="description" /> Detalji
+                    </a>
+                    @if(authService.getActiveUser()) {
+                    <button matButton (click)="doReserve(toy)">
+                        <mat-icon fontIcon="add_shopping_cart" /> Rezerviši
+                    </button>
+                    }
+                </mat-card-actions>
+            </mat-card>
+            }
+        </div>
+        } @else {
+        <mat-card class="no-results-card">
+            <mat-card-content>
+                <mat-icon class="no-results-icon">search_off</mat-icon>
+                <h3>Nema rezultata</h3>
+                <p>Pokušajte sa drugačijim kriterijumima pretrage</p>
+            </mat-card-content>
+        </mat-card>
+        }
+    </div>
 </div>
 } @else {
 <app-loading />

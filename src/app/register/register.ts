@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToyService } from '../services/toy.service';
 import { Alerts } from '../alerts';
 import { UserModel } from '../../models/user.model';
+import { ToyTypeModel } from '../../models/toy.model';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-register',
@@ -17,9 +21,11 @@ import { UserModel } from '../../models/user.model';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectModule,
     MatChipsModule,
     FormsModule,
-    RouterLink
+    RouterLink,
+    MatDividerModule
   ],
   templateUrl: './register.html',
   styleUrl: './register.css',
@@ -37,11 +43,31 @@ export class Register {
   }
 
   passwordRepeat: string = ''
+  toyTypes = signal<ToyTypeModel[]>([])
+  selectedType: string = ''
 
   constructor(private router: Router) {
     if (AuthService.getActiveUser()) {
       router.navigate(['/'])
     }
+
+    ToyService.getToyTypes()
+      .then(rsp => this.toyTypes.set(rsp.data))
+      .catch(() => Alerts.error('Greška pri učitavanju tipova igračaka!'))
+  }
+
+  addFavoriteType() {
+    if (!this.selectedType) return
+    if (!this.user.favoriteToyTypes.includes(this.selectedType)) {
+      this.user.favoriteToyTypes.push(this.selectedType)
+    } else {
+      Alerts.error('Ovaj tip igračke je već dodat!')
+    }
+    this.selectedType = ''
+  }
+
+  removeFavoriteType(type: string) {
+    this.user.favoriteToyTypes = this.user.favoriteToyTypes.filter(t => t !== type)
   }
 
   doRegister() {
@@ -67,6 +93,11 @@ export class Register {
 
     if (!this.user.phone || !this.user.address) {
       Alerts.error('Telefon i adresa su obavezni!')
+      return
+    }
+
+    if (this.user.favoriteToyTypes.length === 0) {
+      Alerts.error('Dodajte bar jednu omiljenu vrstu igračke!')
       return
     }
 

@@ -12,7 +12,7 @@ const baseUser: UserModel = {
     password: 'user123',
     phone: '0631234567',
     address: 'Ulica primer 1, Nis',
-    favoriteToyTypes: ['slagalica', 'figura'],
+    favoriteToyTypes: ['Slagalica', 'Figura'],
     reservations: []
 }
 
@@ -83,7 +83,7 @@ export class AuthService {
         localStorage.removeItem(ACTIVE_KEY)
     }
 
-    static addReservation(toy: ToyModel) {
+static addReservation(toy: ToyModel) {
     const users = this.getUsers()
     const email = localStorage.getItem(ACTIVE_KEY)
 
@@ -93,15 +93,16 @@ export class AuthService {
         toyPrice: toy.price,
         status: 'rezervisano',
         createdAt: new Date().toISOString(),
-        rating: null
+        rating: null,
+        reviewComment: null
     }
 
     for (let u of users) {
-    if (u.email === email) {
-        u.reservations = u.reservations ?? []
-        u.reservations.push(reservation)
+        if (u.email === email) {
+            u.reservations = u.reservations ?? []
+            u.reservations.push(reservation)
+        }
     }
-}
     localStorage.setItem(USERS_KEY, JSON.stringify(users))
 }
 
@@ -134,15 +135,29 @@ static deleteReservation(toyId: number, status: string) {
     localStorage.setItem(USERS_KEY, JSON.stringify(users))
 }
 
-    static rateReservation(toyId: number, rating: number) {
-        const users = this.getUsers()
-        const email = localStorage.getItem(ACTIVE_KEY)
-        for (let u of users) {
-            if (u.email === email) {
-                const res = u.reservations.find(r => r.toyId === toyId && r.status === 'pristiglo')
-                if (res) res.rating = rating
+static changeReservationStatus(toyId: number, status: 'rezervisano' | 'pristiglo' | 'otkazano') {
+    const users = this.getUsers()
+    const email = localStorage.getItem(ACTIVE_KEY)
+    for (let u of users) {
+        if (u.email === email) {
+            const res = u.reservations.find(r => r.toyId === toyId)
+            if (res) res.status = status
+        }
+    }
+    localStorage.setItem(USERS_KEY, JSON.stringify(users))
+}
+    static rateReservation(toyId: number, rating: number, comment: string) {
+    const users = this.getUsers()
+    const email = localStorage.getItem(ACTIVE_KEY)
+    for (let u of users) {
+        if (u.email === email) {
+            const res = u.reservations.find(r => r.toyId === toyId && r.status === 'pristiglo')
+            if (res) {
+                res.rating = rating
+                res.reviewComment = comment
             }
         }
-        localStorage.setItem(USERS_KEY, JSON.stringify(users))
     }
+    localStorage.setItem(USERS_KEY, JSON.stringify(users))
+}
 }

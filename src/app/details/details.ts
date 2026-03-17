@@ -10,9 +10,9 @@ import { DatePipe } from '@angular/common';
 import { ToyModel, ReviewModel } from '../../models/toy.model';
 import { ToyService } from '../services/toy.service';
 import { AuthService } from '../services/auth.service';
+import { ReservationModel } from '../../models/reservation.model';
 import { Alerts } from '../alerts';
 import { Loading } from '../loading/loading';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-details',
@@ -25,29 +25,34 @@ import { CommonModule } from '@angular/common';
     MatDividerModule,
     DatePipe,
     RouterLink,
-    Loading,
-    CommonModule
+    Loading
   ],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
 export class Details {
-
   public authService = AuthService
   toy = signal<ToyModel | null>(null)
   reviews: ReviewModel[] = []
+  userReservation = signal<ReservationModel | null>(null)
 
   constructor(route: ActivatedRoute) {
     route.params.subscribe(params => {
-    const id = Number(params['id'])
-    ToyService.getToyById(id)
+      const id = Number(params['id'])
+      ToyService.getToyById(id)
         .then(rsp => {
-            console.log('Details toy:', rsp.data)
-            this.toy.set(rsp.data)
-            this.reviews = rsp.data.reviews ?? []
+          this.toy.set(rsp.data)
+          this.reviews = rsp.data.reviews ?? []
+          this.loadUserReservation(id)
         })
         .catch(() => Alerts.error('Greška pri učitavanju igračke!'))
-})
+    })
+  }
+
+  loadUserReservation(toyId: number) {
+    const reservations = AuthService.getReservations()
+    const res = reservations.find(r => r.toyId === toyId && r.status === 'pristiglo')
+    this.userReservation.set(res ?? null)
   }
 
   getImageUrl() {
@@ -64,10 +69,17 @@ export class Details {
   }
 
   getAverageRating(): string {
-    if (!this.reviews || this.reviews.length === 0) return 'Nema ocena'
-    const avg = this.reviews.reduce((sum, r) => sum + r.rating, 0) / this.reviews.length
-    return avg.toFixed(1)
-  }
+    const apiReviews = this.reviews ?? []
+    const userRes = this.userReservation()
 
-  
+    let allRatings = apiReviews.map(r => r.rating)
+
+    if (userRes && userRes.rating !== null) {
+        allRatings.push(userRes.rating)
+    }
+
+    if (allRatings.length === 0) return 'Nema ocena'
+    const avg = allRatings.reduce((sum, r) => sum + r, 0) / allRatings.length
+    return '⭐ ' + avg.toFixed(1)
+}
 }

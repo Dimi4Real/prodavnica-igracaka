@@ -1,0 +1,19 @@
+.toy-name {
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.rating-label {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 4px;
+}
+
+.stars-wrapper {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.star-filled {
+    color: orange;
+}

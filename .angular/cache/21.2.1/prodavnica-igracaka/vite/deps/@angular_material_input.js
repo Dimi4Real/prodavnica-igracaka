@@ -1,4 +1,7 @@
 import {
+  MatFormFieldModule
+} from "./chunk-LSNL456X.js";
+import {
   ErrorStateMatcher,
   MAT_FORM_FIELD,
   MatError,
@@ -9,44 +12,43 @@ import {
   MatPrefix,
   MatSuffix,
   _ErrorStateTracker
-} from "./chunk-UIO37FWX.js";
+} from "./chunk-ME6UJG54.js";
+import {
+  coerceBooleanProperty
+} from "./chunk-42QFQP6S.js";
 import {
   getSupportedInputTypes
 } from "./chunk-RRFZ2GZY.js";
 import "./chunk-VON75VBJ.js";
+import "./chunk-GUGIMSVJ.js";
 import {
   AutofillMonitor,
   TextFieldModule
-} from "./chunk-YJZA42U3.js";
-import "./chunk-GUGIMSVJ.js";
+} from "./chunk-QCYKD4VJ.js";
+import {
+  _IdGenerator
+} from "./chunk-UQEZGDW5.js";
+import "./chunk-ASFVYM27.js";
+import "./chunk-HXUDSGSB.js";
+import "./chunk-K7EUQR2V.js";
+import "./chunk-PHPJE3FH.js";
+import "./chunk-N4DOILP3.js";
+import "./chunk-XA6252L2.js";
+import {
+  BidiModule
+} from "./chunk-6QMYEI2D.js";
+import "./chunk-QG3B7VTG.js";
+import "./chunk-JXO7E4KC.js";
+import {
+  Platform
+} from "./chunk-UZXNZDDP.js";
 import {
   FormGroupDirective,
   NgControl,
   NgForm,
   Validators
 } from "./chunk-FJDLLBTJ.js";
-import {
-  ObserversModule,
-  _IdGenerator
-} from "./chunk-D2QXX7H5.js";
-import "./chunk-XA6252L2.js";
-import "./chunk-ASFVYM27.js";
-import "./chunk-HXUDSGSB.js";
-import "./chunk-K7EUQR2V.js";
-import "./chunk-KG57VCY3.js";
-import "./chunk-QG3B7VTG.js";
-import {
-  Platform
-} from "./chunk-UZXNZDDP.js";
 import "./chunk-VVS6UIUX.js";
-import {
-  coerceBooleanProperty
-} from "./chunk-42QFQP6S.js";
-import "./chunk-N4DOILP3.js";
-import {
-  BidiModule
-} from "./chunk-6QMYEI2D.js";
-import "./chunk-JXO7E4KC.js";
 import {
   Directive,
   ElementRef,
@@ -75,30 +77,6 @@ import "./chunk-D7MF2QZF.js";
 
 // node_modules/@angular/material/fesm2022/_input-value-accessor-chunk.mjs
 var MAT_INPUT_VALUE_ACCESSOR = new InjectionToken("MAT_INPUT_VALUE_ACCESSOR");
-
-// node_modules/@angular/material/fesm2022/form-field.mjs
-var MatFormFieldModule = class _MatFormFieldModule {
-  static ɵfac = function MatFormFieldModule_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _MatFormFieldModule)();
-  };
-  static ɵmod = ɵɵdefineNgModule({
-    type: _MatFormFieldModule,
-    imports: [ObserversModule, MatFormField, MatLabel, MatError, MatHint, MatPrefix, MatSuffix],
-    exports: [MatFormField, MatLabel, MatHint, MatError, MatPrefix, MatSuffix, BidiModule]
-  });
-  static ɵinj = ɵɵdefineInjector({
-    imports: [ObserversModule, MatFormField, BidiModule]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatFormFieldModule, [{
-    type: NgModule,
-    args: [{
-      imports: [ObserversModule, MatFormField, MatLabel, MatError, MatHint, MatPrefix, MatSuffix],
-      exports: [MatFormField, MatLabel, MatHint, MatError, MatPrefix, MatSuffix, BidiModule]
-    }]
-  }], null, null);
-})();
 
 // node_modules/@angular/material/fesm2022/input.mjs
 function getMatInputUnsupportedTypeError(type) {

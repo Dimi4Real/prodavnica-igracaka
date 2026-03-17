@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 import { ReservationModel } from '../../models/reservation.model';
 import { Alerts } from '../alerts';
 import { EditReservationDialog } from './edit-reservation-dialog/edit-reservation-dialog';
+import { RateDialog } from './rate-dialog/rate-dialog';
 
 @Component({
   selector: 'app-cart',
@@ -105,12 +106,31 @@ export class Cart {
     })
   }
 
-  doRate(reservation: ReservationModel, rating: number) {
-    AuthService.rateReservation(reservation.toyId, rating)
-    Alerts.success('Ocena je uspešno sačuvana!')
-    this.reloadComponent()
-  }
+  doRate(reservation: ReservationModel) {
+    const dialogRef = this.dialog.open(RateDialog, {
+        width: '400px',
+        data: reservation
+    })
 
+    dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+            AuthService.rateReservation(reservation.toyId, result.rating, result.comment)
+            Alerts.success('Ocena je uspešno sačuvana!')
+            this.reloadComponent()
+        }
+    })
+}
+doChangeStatus(reservation: ReservationModel, status: 'rezervisano' | 'pristiglo' | 'otkazano') {
+    const labels = {
+        'pristiglo': 'pristiglom',
+        'otkazano': 'otkazanom',
+        'rezervisano': 'rezervisanom'
+    }
+    Alerts.confirm(`Da li želite da označite igračku kao ${labels[status]}?`, () => {
+        AuthService.changeReservationStatus(reservation.toyId, status)
+        this.reloadComponent()
+    })
+}
   getStars(count: number): number[] {
     return Array.from({ length: count }, (_, i) => i + 1)
   }

@@ -5,4 +5,5 @@ export interface ReservationModel {
     status: 'rezervisano' | 'pristiglo' | 'otkazano'
     createdAt: string
     rating: number | null
+    reviewComment: string | null
 }

@@ -1,9 +1,9 @@
 import {
-  Platform
-} from "./chunk-UZXNZDDP.js";
-import {
   coerceArray
 } from "./chunk-N4DOILP3.js";
+import {
+  Platform
+} from "./chunk-UZXNZDDP.js";
 import {
   ANIMATION_MODULE_TYPE,
   CSP_NONCE,
@@ -214,4 +214,4 @@ export {
   _getAnimationsState,
   _animationsDisabled
 };
-//# sourceMappingURL=chunk-KG57VCY3.js.map
+//# sourceMappingURL=chunk-PHPJE3FH.js.map

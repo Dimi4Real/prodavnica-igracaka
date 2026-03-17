@@ -27,6 +27,12 @@
                     <button matButton (click)="doEdit(r)">
                         <mat-icon fontIcon="edit" /> Izmeni
                     </button>
+                    <button matButton (click)="doChangeStatus(r, 'pristiglo')">
+                        <mat-icon fontIcon="check_circle" /> Pristiglo
+                    </button>
+                    <button matButton (click)="doChangeStatus(r, 'otkazano')">
+                        <mat-icon fontIcon="cancel" /> Otkaži
+                    </button>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -63,14 +69,11 @@
             <ng-container matColumnDef="akcije">
                 <th mat-header-cell *matHeaderCellDef>Akcije</th>
                 <td mat-cell *matCellDef="let r">
-                    <div class="stars-wrapper">
-                        @for(star of getStars(5); track star) {
-                        <button matIconButton (click)="doRate(r, star)">
-                            <mat-icon>{{r.rating != null && r.rating >= star ? 'star' : 'star_border'}}</mat-icon>
-                        </button>
-                        }
-                    </div>
-                    <button matButton color="warn" (click)="doDelete(r)">
+                    <button matButton (click)="doRate(r)">
+                        <mat-icon fontIcon="star" />
+                        {{r.rating ? 'Izmeni ocenu (' + r.rating + '⭐)' : 'Oceni'}}
+                    </button>
+                    <button matButton (click)="doDelete(r)">
                         <mat-icon fontIcon="delete" /> Obriši
                     </button>
                 </td>
