@@ -97,10 +97,11 @@ export class AuthService {
     }
 
     for (let u of users) {
-        if (u.email === email) {
-            u.reservations.push(reservation)
-        }
+    if (u.email === email) {
+        u.reservations = u.reservations ?? []
+        u.reservations.push(reservation)
     }
+}
     localStorage.setItem(USERS_KEY, JSON.stringify(users))
 }
 

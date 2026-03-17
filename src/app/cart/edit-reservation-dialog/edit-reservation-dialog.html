@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Izmena rezervacije</h2>
+
+<mat-dialog-content>
+    <p class="dialog-subtitle">Igračka: <strong>{{reservation.toyName}}</strong></p>
+    <mat-form-field class="full-width">
+        <mat-label>Naziv igračke</mat-label>
+        <input matInput type="text" [(ngModel)]="editData.toyName">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Cena (RSD)</mat-label>
+        <input matInput type="number" [(ngModel)]="editData.toyPrice">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button matButton (click)="doCancel()">
+        <mat-icon fontIcon="close" /> Odustani
+    </button>
+    <button matButton (click)="doSave()">
+        <mat-icon fontIcon="save" /> Sačuvaj
+    </button>
+</mat-dialog-actions>

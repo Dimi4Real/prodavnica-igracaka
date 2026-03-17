@@ -1,22 +1,19 @@
 import {
-  MatDivider,
-  MatDividerModule
-} from "./chunk-U6HPXR5J.js";
-import {
-  NG_VALUE_ACCESSOR
-} from "./chunk-WMG6DNJI.js";
-import "./chunk-CRJ44NUE.js";
+  SelectionModel
+} from "./chunk-ILGCRDJU.js";
 import {
   MAT_RIPPLE_GLOBAL_OPTIONS,
   MatRippleModule,
   RippleRenderer,
   _StructuralStylesLoader
-} from "./chunk-SQ7IPLUL.js";
-import {
-  coerceBooleanProperty
-} from "./chunk-42QFQP6S.js";
-import "./chunk-ZWTRNZEA.js";
+} from "./chunk-I74XEGKC.js";
+import "./chunk-RRFZ2GZY.js";
+import "./chunk-VON75VBJ.js";
+import "./chunk-RMGKKUH3.js";
 import "./chunk-GUGIMSVJ.js";
+import {
+  NG_VALUE_ACCESSOR
+} from "./chunk-FJDLLBTJ.js";
 import {
   A,
   CdkObserveContent,
@@ -25,32 +22,39 @@ import {
   ObserversModule,
   SPACE,
   hasModifierKey
-} from "./chunk-WKAGHW6T.js";
-import "./chunk-P72TPPJK.js";
-import {
-  _animationsDisabled
-} from "./chunk-65TWZIC7.js";
-import "./chunk-N4DOILP3.js";
+} from "./chunk-D2QXX7H5.js";
 import {
   _getFocusedElementPierceShadowDom
-} from "./chunk-DPAJNIXH.js";
-import "./chunk-AQ53V75X.js";
-import "./chunk-VBT3R76X.js";
+} from "./chunk-XA6252L2.js";
+import "./chunk-ASFVYM27.js";
+import "./chunk-HXUDSGSB.js";
+import "./chunk-K7EUQR2V.js";
+import {
+  _animationsDisabled
+} from "./chunk-KG57VCY3.js";
 import {
   _CdkPrivateStyleLoader
-} from "./chunk-VAJCUT5P.js";
-import {
-  coerceNumberProperty
-} from "./chunk-B254YBBR.js";
+} from "./chunk-QG3B7VTG.js";
 import {
   Platform
-} from "./chunk-FP53DBGY.js";
+} from "./chunk-UZXNZDDP.js";
 import {
   NgTemplateOutlet
-} from "./chunk-KS2K6ICB.js";
+} from "./chunk-VVS6UIUX.js";
+import {
+  MatDivider,
+  MatDividerModule
+} from "./chunk-4HBERU6C.js";
+import {
+  coerceBooleanProperty
+} from "./chunk-42QFQP6S.js";
+import "./chunk-N4DOILP3.js";
 import {
   BidiModule
-} from "./chunk-VYCT5S2C.js";
+} from "./chunk-6QMYEI2D.js";
+import {
+  coerceNumberProperty
+} from "./chunk-JXO7E4KC.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -59,7 +63,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  Injectable,
   InjectionToken,
   Injector,
   Input,
@@ -88,7 +91,6 @@ import {
   ɵɵcontentQuery,
   ɵɵdefineComponent,
   ɵɵdefineDirective,
-  ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵelement,
@@ -108,192 +110,8 @@ import {
   ɵɵtemplate,
   ɵɵtemplateRefExtractor,
   ɵɵviewQuery
-} from "./chunk-U6RI3SJ2.js";
+} from "./chunk-UOFRBGDP.js";
 import "./chunk-D7MF2QZF.js";
-
-// node_modules/@angular/cdk/fesm2022/_unique-selection-dispatcher-chunk.mjs
-var UniqueSelectionDispatcher = class _UniqueSelectionDispatcher {
-  _listeners = [];
-  notify(id, name) {
-    for (let listener of this._listeners) {
-      listener(id, name);
-    }
-  }
-  listen(listener) {
-    this._listeners.push(listener);
-    return () => {
-      this._listeners = this._listeners.filter((registered) => {
-        return listener !== registered;
-      });
-    };
-  }
-  ngOnDestroy() {
-    this._listeners = [];
-  }
-  static ɵfac = function UniqueSelectionDispatcher_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _UniqueSelectionDispatcher)();
-  };
-  static ɵprov = ɵɵdefineInjectable({
-    token: _UniqueSelectionDispatcher,
-    factory: _UniqueSelectionDispatcher.ɵfac,
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(UniqueSelectionDispatcher, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], null, null);
-})();
-
-// node_modules/@angular/cdk/fesm2022/_selection-model-chunk.mjs
-var SelectionModel = class {
-  _multiple;
-  _emitChanges;
-  compareWith;
-  _selection = /* @__PURE__ */ new Set();
-  _deselectedToEmit = [];
-  _selectedToEmit = [];
-  _selected = null;
-  get selected() {
-    if (!this._selected) {
-      this._selected = Array.from(this._selection.values());
-    }
-    return this._selected;
-  }
-  changed = new Subject();
-  constructor(_multiple = false, initiallySelectedValues, _emitChanges = true, compareWith) {
-    this._multiple = _multiple;
-    this._emitChanges = _emitChanges;
-    this.compareWith = compareWith;
-    if (initiallySelectedValues && initiallySelectedValues.length) {
-      if (_multiple) {
-        initiallySelectedValues.forEach((value) => this._markSelected(value));
-      } else {
-        this._markSelected(initiallySelectedValues[0]);
-      }
-      this._selectedToEmit.length = 0;
-    }
-  }
-  select(...values) {
-    this._verifyValueAssignment(values);
-    values.forEach((value) => this._markSelected(value));
-    const changed = this._hasQueuedChanges();
-    this._emitChangeEvent();
-    return changed;
-  }
-  deselect(...values) {
-    this._verifyValueAssignment(values);
-    values.forEach((value) => this._unmarkSelected(value));
-    const changed = this._hasQueuedChanges();
-    this._emitChangeEvent();
-    return changed;
-  }
-  setSelection(...values) {
-    this._verifyValueAssignment(values);
-    const oldValues = this.selected;
-    const newSelectedSet = new Set(values.map((value) => this._getConcreteValue(value)));
-    values.forEach((value) => this._markSelected(value));
-    oldValues.filter((value) => !newSelectedSet.has(this._getConcreteValue(value, newSelectedSet))).forEach((value) => this._unmarkSelected(value));
-    const changed = this._hasQueuedChanges();
-    this._emitChangeEvent();
-    return changed;
-  }
-  toggle(value) {
-    return this.isSelected(value) ? this.deselect(value) : this.select(value);
-  }
-  clear(flushEvent = true) {
-    this._unmarkAll();
-    const changed = this._hasQueuedChanges();
-    if (flushEvent) {
-      this._emitChangeEvent();
-    }
-    return changed;
-  }
-  isSelected(value) {
-    return this._selection.has(this._getConcreteValue(value));
-  }
-  isEmpty() {
-    return this._selection.size === 0;
-  }
-  hasValue() {
-    return !this.isEmpty();
-  }
-  sort(predicate) {
-    if (this._multiple && this.selected) {
-      this._selected.sort(predicate);
-    }
-  }
-  isMultipleSelection() {
-    return this._multiple;
-  }
-  _emitChangeEvent() {
-    this._selected = null;
-    if (this._selectedToEmit.length || this._deselectedToEmit.length) {
-      this.changed.next({
-        source: this,
-        added: this._selectedToEmit,
-        removed: this._deselectedToEmit
-      });
-      this._deselectedToEmit = [];
-      this._selectedToEmit = [];
-    }
-  }
-  _markSelected(value) {
-    value = this._getConcreteValue(value);
-    if (!this.isSelected(value)) {
-      if (!this._multiple) {
-        this._unmarkAll();
-      }
-      if (!this.isSelected(value)) {
-        this._selection.add(value);
-      }
-      if (this._emitChanges) {
-        this._selectedToEmit.push(value);
-      }
-    }
-  }
-  _unmarkSelected(value) {
-    value = this._getConcreteValue(value);
-    if (this.isSelected(value)) {
-      this._selection.delete(value);
-      if (this._emitChanges) {
-        this._deselectedToEmit.push(value);
-      }
-    }
-  }
-  _unmarkAll() {
-    if (!this.isEmpty()) {
-      this._selection.forEach((value) => this._unmarkSelected(value));
-    }
-  }
-  _verifyValueAssignment(values) {
-    if (values.length > 1 && !this._multiple && (typeof ngDevMode === "undefined" || ngDevMode)) {
-      throw getMultipleValuesInSingleSelectionError();
-    }
-  }
-  _hasQueuedChanges() {
-    return !!(this._deselectedToEmit.length || this._selectedToEmit.length);
-  }
-  _getConcreteValue(inputValue, selection) {
-    if (!this.compareWith) {
-      return inputValue;
-    } else {
-      selection = selection ?? this._selection;
-      for (let selectedValue of selection) {
-        if (this.compareWith(inputValue, selectedValue)) {
-          return selectedValue;
-        }
-      }
-      return inputValue;
-    }
-  }
-};
-function getMultipleValuesInSingleSelectionError() {
-  return Error("Cannot pass multiple values into SelectionModel with single-value mode.");
-}
 
 // node_modules/@angular/material/fesm2022/_pseudo-checkbox-chunk.mjs
 var MatPseudoCheckbox = class _MatPseudoCheckbox {

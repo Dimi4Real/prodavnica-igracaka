@@ -2,7 +2,7 @@ import {
   ConnectableObservable,
   isObservable,
   of
-} from "./chunk-U6RI3SJ2.js";
+} from "./chunk-UOFRBGDP.js";
 
 // node_modules/@angular/cdk/fesm2022/_data-source-chunk.mjs
 var DataSource = class {
@@ -105,8 +105,10 @@ var _RecycleViewRepeaterStrategy = class {
 };
 
 export {
+  DataSource,
   isDataSource,
   ArrayDataSource,
+  _ViewRepeaterOperation,
   _RecycleViewRepeaterStrategy
 };
-//# sourceMappingURL=chunk-CRJ44NUE.js.map
+//# sourceMappingURL=chunk-RMGKKUH3.js.map

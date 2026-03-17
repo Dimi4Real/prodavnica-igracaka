@@ -1,9 +1,9 @@
 import {
+  Platform
+} from "./chunk-UZXNZDDP.js";
+import {
   coerceArray
 } from "./chunk-N4DOILP3.js";
-import {
-  Platform
-} from "./chunk-FP53DBGY.js";
 import {
   ANIMATION_MODULE_TYPE,
   CSP_NONCE,
@@ -26,7 +26,7 @@ import {
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-U6RI3SJ2.js";
+} from "./chunk-UOFRBGDP.js";
 
 // node_modules/@angular/cdk/fesm2022/_breakpoints-observer-chunk.mjs
 var mediaQueriesForWebkitCompatibility = /* @__PURE__ */ new Set();
@@ -214,4 +214,4 @@ export {
   _getAnimationsState,
   _animationsDisabled
 };
-//# sourceMappingURL=chunk-65TWZIC7.js.map
+//# sourceMappingURL=chunk-KG57VCY3.js.map

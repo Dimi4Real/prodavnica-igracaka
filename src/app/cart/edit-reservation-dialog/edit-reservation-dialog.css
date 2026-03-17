@@ -1,0 +1,8 @@
+.dialog-subtitle {
+    margin-bottom: 16px;
+    color: gray;
+}
+
+mat-form-field {
+    margin-bottom: 8px;
+}

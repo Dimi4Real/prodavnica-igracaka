@@ -1,1 +1,134 @@
-<p>cart works!</p>
+@if(getRezervisano().length > 0) {
+<mat-card class="cart-section">
+    <mat-card-header>
+        <h2>🕐 Rezervisane igračke</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="getRezervisano()" class="full-width">
+            <ng-container matColumnDef="naziv">
+                <th mat-header-cell *matHeaderCellDef>Naziv</th>
+                <td mat-cell *matCellDef="let r"><strong>{{r.toyName}}</strong></td>
+            </ng-container>
+            <ng-container matColumnDef="cena">
+                <th mat-header-cell *matHeaderCellDef>Cena</th>
+                <td mat-cell *matCellDef="let r">{{r.toyPrice}} RSD</td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let r">🕐 {{r.status}}</td>
+            </ng-container>
+            <ng-container matColumnDef="kreirano">
+                <th mat-header-cell *matHeaderCellDef>Datum rezervacije</th>
+                <td mat-cell *matCellDef="let r">{{formatDate(r.createdAt)}}</td>
+            </ng-container>
+            <ng-container matColumnDef="akcije">
+                <th mat-header-cell *matHeaderCellDef>Akcije</th>
+                <td mat-cell *matCellDef="let r">
+                    <button matButton (click)="doEdit(r)">
+                        <mat-icon fontIcon="edit" /> Izmeni
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <h3 class="total">Ukupno: <strong>{{getTotalPrice()}} RSD</strong></h3>
+    </mat-card-content>
+</mat-card>
+}
+
+@if(getPristiglo().length > 0) {
+<mat-card class="cart-section">
+    <mat-card-header>
+        <h2>✅ Pristigle igračke</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="getPristiglo()" class="full-width">
+            <ng-container matColumnDef="naziv">
+                <th mat-header-cell *matHeaderCellDef>Naziv</th>
+                <td mat-cell *matCellDef="let r"><strong>{{r.toyName}}</strong></td>
+            </ng-container>
+            <ng-container matColumnDef="cena">
+                <th mat-header-cell *matHeaderCellDef>Cena</th>
+                <td mat-cell *matCellDef="let r">{{r.toyPrice}} RSD</td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let r">✅ {{r.status}}</td>
+            </ng-container>
+            <ng-container matColumnDef="kreirano">
+                <th mat-header-cell *matHeaderCellDef>Datum rezervacije</th>
+                <td mat-cell *matCellDef="let r">{{formatDate(r.createdAt)}}</td>
+            </ng-container>
+            <ng-container matColumnDef="akcije">
+                <th mat-header-cell *matHeaderCellDef>Akcije</th>
+                <td mat-cell *matCellDef="let r">
+                    <div class="stars-wrapper">
+                        @for(star of getStars(5); track star) {
+                        <button matIconButton (click)="doRate(r, star)">
+                            <mat-icon>{{r.rating != null && r.rating >= star ? 'star' : 'star_border'}}</mat-icon>
+                        </button>
+                        }
+                    </div>
+                    <button matButton color="warn" (click)="doDelete(r)">
+                        <mat-icon fontIcon="delete" /> Obriši
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>
+}
+
+@if(getOtkazano().length > 0) {
+<mat-card class="cart-section">
+    <mat-card-header>
+        <h2>❌ Otkazane rezervacije</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="getOtkazano()" class="full-width">
+            <ng-container matColumnDef="naziv">
+                <th mat-header-cell *matHeaderCellDef>Naziv</th>
+                <td mat-cell *matCellDef="let r"><strong>{{r.toyName}}</strong></td>
+            </ng-container>
+            <ng-container matColumnDef="cena">
+                <th mat-header-cell *matHeaderCellDef>Cena</th>
+                <td mat-cell *matCellDef="let r">{{r.toyPrice}} RSD</td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let r">❌ {{r.status}}</td>
+            </ng-container>
+            <ng-container matColumnDef="kreirano">
+                <th mat-header-cell *matHeaderCellDef>Datum rezervacije</th>
+                <td mat-cell *matCellDef="let r">{{formatDate(r.createdAt)}}</td>
+            </ng-container>
+            <ng-container matColumnDef="akcije">
+                <th mat-header-cell *matHeaderCellDef>Akcije</th>
+                <td mat-cell *matCellDef="let r">
+                    <a [routerLink]="'/details/' + r.toyId" matButton>
+                        <mat-icon fontIcon="description" /> Detalji
+                    </a>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>
+}
+
+@if(getRezervisano().length === 0 && getPristiglo().length === 0 && getOtkazano().length === 0) {
+<mat-card class="empty-card">
+    <mat-card-content>
+        <mat-icon class="empty-icon">shopping_cart</mat-icon>
+        <h2>Vaša korpa je prazna</h2>
+        <p>Dodajte igračke iz naše ponude</p>
+        <a routerLink="/" matButton>
+            <mat-icon fontIcon="home" /> Idi na početnu
+        </a>
+    </mat-card-content>
+</mat-card>
+}

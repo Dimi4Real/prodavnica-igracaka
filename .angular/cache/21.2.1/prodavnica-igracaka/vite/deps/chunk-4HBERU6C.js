@@ -3,7 +3,7 @@ import {
 } from "./chunk-42QFQP6S.js";
 import {
   BidiModule
-} from "./chunk-VYCT5S2C.js";
+} from "./chunk-6QMYEI2D.js";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +16,7 @@ import {
   ɵɵdefineComponent,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-U6RI3SJ2.js";
+} from "./chunk-UOFRBGDP.js";
 
 // node_modules/@angular/material/fesm2022/divider.mjs
 var MatDivider = class _MatDivider {
@@ -115,4 +115,4 @@ export {
   MatDivider,
   MatDividerModule
 };
-//# sourceMappingURL=chunk-U6HPXR5J.js.map
+//# sourceMappingURL=chunk-4HBERU6C.js.map

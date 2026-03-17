@@ -3,12 +3,7 @@ import {
   setClassMetadata,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-U6RI3SJ2.js";
-
-// node_modules/@angular/cdk/fesm2022/_test-environment-chunk.mjs
-function _isTestEnvironment() {
-  return typeof __karma__ !== "undefined" && !!__karma__ || typeof jasmine !== "undefined" && !!jasmine || typeof jest !== "undefined" && !!jest || typeof Mocha !== "undefined" && !!Mocha;
-}
+} from "./chunk-UOFRBGDP.js";
 
 // node_modules/@angular/cdk/fesm2022/platform.mjs
 var PlatformModule = class _PlatformModule {
@@ -45,7 +40,6 @@ function getSupportedInputTypes() {
 }
 
 export {
-  _isTestEnvironment,
   getSupportedInputTypes
 };
-//# sourceMappingURL=chunk-ZWTRNZEA.js.map
+//# sourceMappingURL=chunk-RRFZ2GZY.js.map

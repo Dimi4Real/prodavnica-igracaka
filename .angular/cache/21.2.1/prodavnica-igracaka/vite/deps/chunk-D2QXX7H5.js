@@ -1,29 +1,29 @@
 import {
-  _VisuallyHiddenLoader,
-  _setInnerHtml
-} from "./chunk-P72TPPJK.js";
-import {
-  BreakpointObserver
-} from "./chunk-65TWZIC7.js";
-import {
   _getEventTarget,
   _getFocusedElementPierceShadowDom,
   _getShadowRoot,
   normalizePassiveListenerOptions
-} from "./chunk-DPAJNIXH.js";
+} from "./chunk-XA6252L2.js";
+import {
+  _VisuallyHiddenLoader,
+  _setInnerHtml
+} from "./chunk-ASFVYM27.js";
 import {
   DomSanitizer
-} from "./chunk-AQ53V75X.js";
+} from "./chunk-HXUDSGSB.js";
+import {
+  BreakpointObserver
+} from "./chunk-KG57VCY3.js";
 import {
   _CdkPrivateStyleLoader
-} from "./chunk-VAJCUT5P.js";
+} from "./chunk-QG3B7VTG.js";
+import {
+  Platform
+} from "./chunk-UZXNZDDP.js";
 import {
   coerceElement,
   coerceNumberProperty
-} from "./chunk-B254YBBR.js";
-import {
-  Platform
-} from "./chunk-FP53DBGY.js";
+} from "./chunk-JXO7E4KC.js";
 import {
   APP_ID,
   BehaviorSubject,
@@ -65,7 +65,7 @@ import {
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-U6RI3SJ2.js";
+} from "./chunk-UOFRBGDP.js";
 import {
   __spreadProps,
   __spreadValues
@@ -2422,10 +2422,11 @@ export {
   CdkObserveContent,
   ObserversModule,
   InteractivityChecker,
+  FocusTrapFactory,
   A11yModule,
   _IdGenerator,
   hasModifierKey,
   FocusKeyManager,
   AriaDescriber
 };
-//# sourceMappingURL=chunk-WKAGHW6T.js.map
+//# sourceMappingURL=chunk-D2QXX7H5.js.map
