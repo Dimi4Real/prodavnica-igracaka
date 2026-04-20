@@ -116,11 +116,17 @@
                     <p class="toy-desc">{{toy.description}}</p>
                     <p class="price-tag">{{toy.price}} RSD</p>
                     <div class="card-chips">
-                        <mat-chip-set>
-                            <mat-chip>{{toy.targetGroup}}</mat-chip>
-                            <mat-chip>{{getAverageRating(toy)}}</mat-chip>
-                        </mat-chip-set>
+                <mat-chip-set>
+        <mat-chip>{{toy.targetGroup}}</mat-chip>
+    </mat-chip-set>
+                <div class="rating-display">
+        @if(getAverageRating(toy) !== 'Nema ocena') {
+        <span class="rating-stars">{{getAverageRating(toy)}}</span>
+        } @else {
+        <span class="no-rating">☆ Nema ocena</span>
+        }
                     </div>
+            </div>
                 </mat-card-content>
                 <mat-card-actions>
                     <a [routerLink]="'/details/' + toy.toyId" matButton>

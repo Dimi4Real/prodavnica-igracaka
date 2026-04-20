@@ -51,10 +51,10 @@ export class Home {
 
   constructor() {
     ToyService.getToys()
-      .then(rsp => {
+    .then(rsp => {
         this.allToys.set(rsp.data)
         this.filteredToys.set(rsp.data)
-      })
+    })
       .catch(() => Alerts.error('Greška pri učitavanju igračaka!'))
 
     ToyService.getAgeGroups()
@@ -113,14 +113,9 @@ export class Home {
 
    if (this.filterMinRating !== null) {
     result = result.filter(t => {
-        const apiReviews = t.reviews ?? []
-        const userRes = AuthService.getReservations().find(r => r.toyId === t.toyId && r.rating !== null)
-
-        let allRatings = apiReviews.map(r => r.rating)
-
-        if (userRes && userRes.rating !== null) {
-            allRatings.push(userRes.rating)
-        }
+        const allRatings = AuthService.getAllRatings()
+            .filter(r => r.toyId === t.toyId)
+            .map(r => r.rating)
 
         if (allRatings.length === 0) return false
         const avg = allRatings.reduce((sum, r) => sum + r, 0) / allRatings.length
@@ -154,16 +149,10 @@ export class Home {
     Alerts.success(`Igračka "${toy.name}" je uspešno rezervisana!`)
   }
 
-  getAverageRating(toy: ToyModel): string {
-    const apiReviews = toy.reviews ?? []
-    const userReservations = AuthService.getReservations()
-    const userRes = userReservations.find(r => r.toyId === toy.toyId && r.rating !== null)
-
-    let allRatings = apiReviews.map(r => r.rating)
-
-    if (userRes && userRes.rating !== null) {
-        allRatings.push(userRes.rating)
-    }
+getAverageRating(toy: ToyModel): string {
+    const allRatings = AuthService.getAllRatings()
+        .filter(r => r.toyId === toy.toyId)
+        .map(r => r.rating)
 
     if (allRatings.length === 0) return 'Nema ocena'
     const avg = allRatings.reduce((sum, r) => sum + r, 0) / allRatings.length

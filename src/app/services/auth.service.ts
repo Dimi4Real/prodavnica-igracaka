@@ -160,4 +160,16 @@ static changeReservationStatus(toyId: number, status: 'rezervisano' | 'pristiglo
     }
     localStorage.setItem(USERS_KEY, JSON.stringify(users))
 }
+static getAllRatings(): { toyId: number, rating: number }[] {
+    const users = this.getUsers()
+    const ratings: { toyId: number, rating: number }[] = []
+    for (let u of users) {
+        for (let r of u.reservations) {
+            if (r.rating !== null) {
+                ratings.push({ toyId: r.toyId, rating: r.rating })
+            }
+        }
+    }
+    return ratings
+}
 }
