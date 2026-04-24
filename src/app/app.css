@@ -1,18 +1,27 @@
 mat-toolbar {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+    color: white !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 24px;
     gap: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    height: 64px;
 }
 
 .brand {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 800;
     text-decoration: none;
-    color: inherit;
+    color: white !important;
     white-space: nowrap;
     min-width: 200px;
+    letter-spacing: 1px;
+}
+
+.brand span {
+    color: #e94560;
 }
 
 .nav-center {
@@ -23,12 +32,34 @@ mat-toolbar {
     flex: 1;
 }
 
+.nav-center a {
+    color: rgba(255,255,255,0.85) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+.nav-center a:hover {
+    background: rgba(255,255,255,0.1) !important;
+    color: white !important;
+}
+
 .nav-right {
     display: flex;
     align-items: center;
     gap: 4px;
     min-width: 200px;
     justify-content: flex-end;
+}
+
+.nav-right a, .nav-right button {
+    color: rgba(255,255,255,0.85) !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+.nav-right a:hover, .nav-right button:hover {
+    background: rgba(255,255,255,0.1) !important;
+    color: white !important;
 }
 
 .wrapper {

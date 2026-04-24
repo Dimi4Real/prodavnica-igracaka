@@ -160,13 +160,18 @@ static changeReservationStatus(toyId: number, status: 'rezervisano' | 'pristiglo
     }
     localStorage.setItem(USERS_KEY, JSON.stringify(users))
 }
-static getAllRatings(): { toyId: number, rating: number }[] {
+static getAllRatings(): { toyId: number, rating: number, author: string, comment: string | null }[] {
     const users = this.getUsers()
-    const ratings: { toyId: number, rating: number }[] = []
+    const ratings: { toyId: number, rating: number, author: string, comment: string | null }[] = []
     for (let u of users) {
         for (let r of u.reservations) {
             if (r.rating !== null) {
-                ratings.push({ toyId: r.toyId, rating: r.rating })
+                ratings.push({
+                    toyId: r.toyId,
+                    rating: r.rating,
+                    author: u.firstName + ' ' + u.lastName,
+                    comment: r.reviewComment ?? null
+                })
             }
         }
     }

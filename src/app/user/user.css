@@ -1,13 +1,33 @@
 .user-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
     margin-bottom: 24px;
+    max-width: 1200px;
+    margin: 0 auto 24px auto;
+    padding: 0 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
 }
 
 .user-card {
     width: 360px;
+    flex-shrink: 0;
+}
+
+/* Ovo osigurava da kartice u istom redu budu iste visine */
+.row .user-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.row .user-card mat-card-content {
+    flex: 1;
 }
 
 .avatar-wrapper {
@@ -21,10 +41,11 @@
     border-radius: 50%;
     width: 80px;
     height: 80px;
+    align-items: center;
 }
 
 .user-email {
-    color: gray;
+    color: gray;    
     font-size: 14px;
     margin: 0;
 }
@@ -63,3 +84,4 @@ mat-card-content {
     font-size: 14px;
     font-style: italic;
 }
+

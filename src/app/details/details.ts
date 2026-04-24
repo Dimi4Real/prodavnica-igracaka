@@ -35,6 +35,8 @@ export class Details {
   toy = signal<ToyModel | null>(null)
   reviews: ReviewModel[] = []
   userReservation = signal<ReservationModel | null>(null)
+  userRatings = signal<{ toyId: number, rating: number, author: string, comment: string | null }[]>([])
+
 
   constructor(route: ActivatedRoute) {
     route.params.subscribe(params => {
@@ -47,6 +49,7 @@ export class Details {
         this.reviews = rsp.data.reviews ?? []
         console.log('Reviews array:', this.reviews)
         this.loadUserReservation(id)
+        this.userRatings.set(AuthService.getAllRatings().filter(r => r.toyId === id))
     })
     .catch(() => Alerts.error('Greška pri učitavanju igračke!'))
     })
@@ -83,5 +86,6 @@ getAverageRating(): string {
     if (allRatings.length === 0) return 'Nema ocena'
     const avg = allRatings.reduce((sum, r) => sum + r, 0) / allRatings.length
     return '⭐ ' + avg.toFixed(1)
+    
 }
 }
