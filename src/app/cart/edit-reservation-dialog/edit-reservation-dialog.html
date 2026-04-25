@@ -1,10 +1,33 @@
 <h2 mat-dialog-title>Izmena rezervacije</h2>
 
 <mat-dialog-content>
-    <p class="dialog-subtitle">Igračka: <strong>{{reservation.toyName}}</strong></p>
     <mat-form-field class="full-width">
         <mat-label>Naziv igračke</mat-label>
         <input matInput type="text" [(ngModel)]="editData.toyName">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Opis</mat-label>
+        <textarea matInput [(ngModel)]="editData.toyDescription" rows="3"></textarea>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Tip igračke</mat-label>
+        <input matInput type="text" [(ngModel)]="editData.toyType">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Uzrast</mat-label>
+        <input matInput type="text" [(ngModel)]="editData.toyAgeGroup">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Ciljna grupa</mat-label>
+        <mat-select [(ngModel)]="editData.toyTargetGroup">
+            @for(tg of targetGroups; track tg) {
+            <mat-option [value]="tg">{{tg}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Datum proizvodnje</mat-label>
+        <input matInput type="date" [(ngModel)]="editData.toyProductionDate">
     </mat-form-field>
     <mat-form-field class="full-width">
         <mat-label>Cena (RSD)</mat-label>

@@ -1,46 +1,82 @@
 @if(getRezervisano().length > 0) {
-<mat-card class="cart-section">
-    <mat-card-header>
-        <h2>🕐 Rezervisane igračke</h2>
-    </mat-card-header>
-    <mat-card-content>
-        <table mat-table [dataSource]="getRezervisano()" class="full-width">
-            <ng-container matColumnDef="naziv">
-                <th mat-header-cell *matHeaderCellDef>Naziv</th>
-                <td mat-cell *matCellDef="let r"><strong>{{r.toyName}}</strong></td>
-            </ng-container>
-            <ng-container matColumnDef="cena">
-                <th mat-header-cell *matHeaderCellDef>Cena</th>
-                <td mat-cell *matCellDef="let r">{{r.toyPrice}} RSD</td>
-            </ng-container>
-            <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef>Status</th>
-                <td mat-cell *matCellDef="let r">🕐 {{r.status}}</td>
-            </ng-container>
-            <ng-container matColumnDef="kreirano">
-                <th mat-header-cell *matHeaderCellDef>Datum rezervacije</th>
-                <td mat-cell *matCellDef="let r">{{formatDate(r.createdAt)}}</td>
-            </ng-container>
-            <ng-container matColumnDef="akcije">
-                <th mat-header-cell *matHeaderCellDef>Akcije</th>
-                <td mat-cell *matCellDef="let r">
-                    <button matButton (click)="doEdit(r)">
-                        <mat-icon fontIcon="edit" /> Izmeni
-                    </button>
-                    <button matButton (click)="doChangeStatus(r, 'pristiglo')">
-                        <mat-icon fontIcon="check_circle" /> Pristiglo
-                    </button>
-                    <button matButton (click)="doChangeStatus(r, 'otkazano')">
-                        <mat-icon fontIcon="cancel" /> Otkaži
-                    </button>
-                </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <h3 class="total">Ukupno: <strong>{{getTotalPrice()}} RSD</strong></h3>
-    </mat-card-content>
-</mat-card>
+<div class="cart-section">
+    <h2>🕐 Rezervisane igračke</h2>
+    <div class="reservation-cards">
+        @for(r of getRezervisano(); track r.toyId) {
+        <mat-card class="reservation-card" appearance="outlined">
+            <mat-card-header>
+                    <mat-card-title>{{r.toyName}}</mat-card-title>
+                    <mat-card-subtitle>🕐 {{r.status}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="info-grid">
+                    <div class="info-item full-width">
+                        <span class="info-label">
+                            <mat-icon>description</mat-icon> Opis
+                        </span>
+                        <span class="info-value">{{r.toyDescription}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">
+                            <mat-icon>category</mat-icon> Tip
+                        </span>
+                        <span class="info-value">{{r.toyType}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">
+                            <mat-icon>child_care</mat-icon> Uzrast
+                        </span>
+                        <span class="info-value">{{r.toyAgeGroup}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">
+                            <mat-icon>people</mat-icon> Ciljna grupa
+                        </span>
+                        <span class="info-value">{{r.toyTargetGroup}}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">
+                            <mat-icon>payments</mat-icon> Cena
+                        </span>
+                        <span class="info-value">{{r.toyPrice}} RSD</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">
+                            <mat-icon>calendar_month</mat-icon> Datum proizvodnje
+                        </span>
+                        <span class="info-value">{{r.toyProductionDate}}</span>
+                    </div>
+                    <div class="info-item full-width">
+                        <span class="info-label">
+                            <mat-icon>schedule</mat-icon> Datum rezervacije
+                        </span>
+                        <span class="info-value">{{formatDate(r.createdAt)}}</span>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button matButton (click)="doEdit(r)">
+                    <mat-icon fontIcon="edit" /> Izmeni
+                </button>
+                <button matButton (click)="doChangeStatus(r, 'pristiglo')">
+                    <mat-icon fontIcon="check_circle" /> Pristiglo
+                </button>
+                <button matButton (click)="doChangeStatus(r, 'otkazano')">
+                    <mat-icon fontIcon="cancel" /> Otkaži
+                </button>
+            </mat-card-actions>
+        </mat-card>
+        }
+    </div>
+    <mat-card class="total-card">
+        <mat-card-content>
+            <div class="total-wrapper">
+                <mat-icon>payments</mat-icon>
+                <h2>Ukupno: <strong>{{getTotalPrice()}} RSD</strong></h2>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
 }
 
 @if(getPristiglo().length > 0) {

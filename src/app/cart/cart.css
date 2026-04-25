@@ -1,10 +1,91 @@
 .cart-section {
+    margin-bottom: 24px;
+}
+
+.cart-section h2 {
+    margin-bottom: 16px;
+    font-size: 22px;
+}
+
+.reservation-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
     margin-bottom: 16px;
 }
 
-.total {
-    margin-top: 16px;
-    text-align: right;
+.reservation-card {
+    width: 340px;
+    border-radius: 16px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reservation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.info-label {
+    font-size: 11px;
+    color: gray;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.info-label mat-icon {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+.info-value {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.info-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(var(--mat-sys-primary), 0.1);
+    color: var(--mat-sys-primary);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.total-card {
+    max-width: 400px;
+    margin-top: 8px;
+    border-radius: 16px !important;
+}
+
+.total-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .empty-card {
@@ -27,4 +108,15 @@
 .stars-wrapper {
     display: inline-flex;
     align-items: center;
+}
+
+mat-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+mat-card-subtitle {
+    
 }

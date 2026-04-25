@@ -10,6 +10,7 @@ import { ReservationModel } from '../../models/reservation.model';
 import { Alerts } from '../alerts';
 import { EditReservationDialog } from './edit-reservation-dialog/edit-reservation-dialog';
 import { RateDialog } from './rate-dialog/rate-dialog';
+import { MatList, MatListItem } from '@angular/material/list';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,7 @@ import { RateDialog } from './rate-dialog/rate-dialog';
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './cart.html',
   styleUrl: './cart.css',

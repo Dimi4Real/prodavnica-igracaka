@@ -90,6 +90,11 @@ static addReservation(toy: ToyModel) {
     const reservation: ReservationModel = {
         toyId: toy.toyId,
         toyName: toy.name,
+        toyDescription: toy.description,
+        toyType: toy.type.name,
+        toyAgeGroup: toy.ageGroup.name,
+        toyTargetGroup: toy.targetGroup,
+        toyProductionDate: toy.productionDate,
         toyPrice: toy.price,
         status: 'rezervisano',
         createdAt: new Date().toISOString(),

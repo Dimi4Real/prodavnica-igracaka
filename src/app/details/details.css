@@ -2,18 +2,18 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 16px;
+    gap: 50px;
     margin-bottom: 24px;
 }
 
 .details-card {
-    width: 360px;
+    width: 350px;
 }
 
 .details-right {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 30px;
     width: 480px;
 }
 
