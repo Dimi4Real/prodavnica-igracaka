@@ -143,13 +143,18 @@ static deleteReservation(toyId: number, status: string) {
 static changeReservationStatus(toyId: number, status: 'rezervisano' | 'pristiglo' | 'otkazano') {
     const users = this.getUsers()
     const email = localStorage.getItem(ACTIVE_KEY)
+    console.log('Menjam status za toyId:', toyId, 'na:', status)
     for (let u of users) {
         if (u.email === email) {
-            const res = u.reservations.find(r => r.toyId === toyId)
-            if (res) res.status = status
+            const res = u.reservations.find(r => r.toyId === toyId && r.status === 'rezervisano')
+            console.log('Pronadjena rezervacija:', res)
+            if (res) {
+                res.status = status
+            }
         }
     }
     localStorage.setItem(USERS_KEY, JSON.stringify(users))
+    console.log('Nakon izmene:', this.getUsers())
 }
     static rateReservation(toyId: number, rating: number, comment: string) {
     const users = this.getUsers()

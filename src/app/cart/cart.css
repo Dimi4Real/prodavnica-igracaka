@@ -120,3 +120,8 @@ mat-card-header {
 mat-card-subtitle {
     
 }
+
+mat-card-title{
+    color:#0560bb;
+    font-weight: 600;
+}

@@ -17,9 +17,4 @@ import { MatIcon } from '@angular/material/icon';
 export class About {
    constructor(private dialog: MatDialog) {}
 
-  openFaq() {
- 
-    alert('FAQ: 1. Kako da naručim? -> Dodajte u korpu i rezervišite. 2. Dostava je 2-3 dana. 3. Plaćanje pouzećem ili karticom.');
-    
-}
 }
